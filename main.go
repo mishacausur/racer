@@ -3,16 +3,52 @@ package main
 import "fmt"
 
 func main() {
-	array := [5]int{1, 2, 3, 4, 5}
-	array = FiveSteps(array)
-	fmt.Printf("%v", array)
+	input := [9]string{
+		"проснуться",
+		"позавтракать",
+		"сходить в школу",
+		"пообедать",
+		"погулять с друзьями",
+		"сделать домашнюю работу",
+		"попрограммировать на Go",
+		"поужинать",
+		"лечь спать",
+	}
+	PrettyArrayOutput(input)
 }
 
-func FiveSteps(array [5]int) [5]int {
-	var reversed [5]int
+func ThirdElementInArray(array [6]int) int {
+	return array[2]
+}
 
-	for i := 0; i < len(array); i++ {
-		reversed[i] = array[len(array)-1-i]
+func FindMinMaxInArray(array [10]int) (int, int) {
+	min, max := array[0], array[0]
+
+	for i := 1; i < 10; i++ {
+		if array[i] < min {
+			min = array[i]
+		}
+		if array[i] > max {
+			max = array[i]
+		}
 	}
-	return reversed
+
+	return min, max
+}
+
+func SumOfArray(array [6]int) int {
+	sum := 0
+	for _, value := range array {
+		sum += value
+	}
+	return sum
+}
+
+func PrettyArrayOutput(array [9]string) {
+	for i := 0; i < 7; i++ {
+		fmt.Printf("%d я уже сделал: %s\n", i+1, array[i])
+	}
+	for i := 7; i < 9; i++ {
+		fmt.Printf("%d не успел сделать: %s\n", i+1, array[i])
+	}
 }
