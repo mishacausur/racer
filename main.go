@@ -1,23 +1,16 @@
 package main
 
-import (
-	"fmt"
-)
+// import (
+// 	"fmt"
+// )
 
-type Employee struct {
-	name     string
-	position string
-	salary   float64
-	bonus    float64
+type Student struct {
+	name            string
+	solvedProblems  int
+	scoreForOneTask float64
+	passingScore    float64
 }
 
-func (e Employee) CalculateTotalSalary() {
-	fmt.Println("Employee:", e.name)
-	fmt.Println("Position:", e.position)
-	fmt.Printf("Total Salary: %.2f", e.bonus+e.salary)
-}
-
-func main() {
-	man := Employee{name: "Anton", position: "product manager", salary: 100.0, bonus: 100.0}
-	man.CalculateTotalSalary()
+func (s Student) IsExcellentStudent() bool {
+	return s.passingScore < (float64(s.solvedProblems) * s.scoreForOneTask)
 }
