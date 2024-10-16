@@ -2,67 +2,33 @@ package main
 
 import (
 	"fmt"
-	"time"
+	"math"
 )
 
-type Task struct {
-	summary     string
-	description string
-	deadline    time.Time
-	priority    int
+type Shape interface {
+	Area() float64
 }
 
-type Note struct {
-	title string
-	text  string
+type Circle struct {
+	radius float64
 }
 
-type ToDoList struct {
-	name  string
-	tasks []Task
-	notes []Note
+func (c Circle) Area() float64 {
+	return math.Pi * (c.radius * c.radius)
 }
 
-func (t Task) IsOverdue() bool {
-	return time.Now().After(t.deadline)
+type Rectangle struct {
+	width  float32
+	height float32
 }
 
-func (t Task) IsTopPriority() bool {
-	return t.priority >= 4
-}
-
-func (l ToDoList) TasksCount() int {
-	return len(l.tasks)
-}
-
-func (l ToDoList) NotesCount() int {
-	return len(l.notes)
-}
-
-func (l ToDoList) CountTopPrioritiesTasks() int {
-	var result int
-	for _, i := range l.tasks {
-		if i.priority >= 4 {
-			result++
-		}
-	}
-
-	return result
-}
-
-func (l ToDoList) CountOverdueTasks() int {
-	var result int
-	for _, i := range l.tasks {
-		if i.IsOverdue() {
-			result++
-		}
-	}
-
-	return result
+func (r Rectangle) Area() float64 {
+	return float64(r.height * r.width)
 }
 
 func main() {
-	task := Task{summary: "Make Yandex Lyceum", deadline: time.Now().Add(time.Hour), description: "Make Module 0, Task 10", priority: 4}
-	fmt.Println(task.IsOverdue())
-	fmt.Print(task.IsTopPriority())
+	figure_1 := Circle{radius: 1.0}
+	fmt.Println(figure_1.Area())
+	figure_2 := Rectangle{width: 57.2, height: 10.2}
+	fmt.Println(figure_2.Area())
 }
