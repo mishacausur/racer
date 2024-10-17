@@ -4,18 +4,21 @@ import (
 	"fmt"
 )
 
-type Animal interface {
-	MakeSound()
+type Logger interface {
+	Log(message string)
 }
 
-type Cat struct{}
-
-func (c Cat) MakeSound() {
-	fmt.Println("Мяу!")
+type Log struct {
+	Level LogLevel
 }
 
-type Dog struct{}
-
-func (c Dog) MakeSound() {
-	fmt.Println("Гав!")
+func (l Log) Log(message string) {
+	fmt.Printf("%s: %s", l.Level, message)
 }
+
+type LogLevel string
+
+const (
+	Error LogLevel = "ERROR"
+	Info  LogLevel = "INFO"
+)
