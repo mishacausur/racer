@@ -1,16 +1,24 @@
 package main
 
-// import (
-// 	"fmt"
-// )
+import (
+	"fmt"
+)
 
-type Student struct {
-	name            string
-	solvedProblems  int
-	scoreForOneTask float64
-	passingScore    float64
+type Logger interface {
+	Log(message string)
 }
 
-func (s Student) IsExcellentStudent() bool {
-	return s.passingScore < (float64(s.solvedProblems) * s.scoreForOneTask)
+type Log struct {
+	Level LogLevel
 }
+
+func (l Log) Log(message string) {
+	fmt.Printf("%s: %s", l.Level, message)
+}
+
+type LogLevel string
+
+const (
+	Error LogLevel = "ERROR"
+	Info  LogLevel = "INFO"
+)
