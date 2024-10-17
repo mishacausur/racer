@@ -2,19 +2,19 @@ package main
 
 import (
 	"fmt"
-	"strconv"
+	"sort"
+	"strings"
 )
 
-func SumTwoIntegers(a, b string) (int, error) {
+func AreAnagrams(str1, str2 string) bool {
+	r1 := []rune(strings.ToLower(str1))
+	r2 := []rune(strings.ToLower(str2))
 
-	i, err := strconv.Atoi(a)
-	u, err1 := strconv.Atoi(b)
+	sort.Slice(r1, func(i, j int) bool { return r1[i] < r1[j] })
+	sort.Slice(r2, func(i, j int) bool { return r2[i] < r2[j] })
 
-	if err != nil || err1 != nil {
-		return 0, fmt.Errorf("invalid input, please provide two integers")
-	}
-	return i + u, nil
+	return string(r1) == string(r2)
 }
 func main() {
-	fmt.Println(SumTwoIntegers("3.7", "5"))
+	fmt.Println(AreAnagrams("Кабан", "банка"))
 }
