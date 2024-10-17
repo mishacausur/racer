@@ -4,14 +4,11 @@ import (
 	"fmt"
 )
 
+func ConcatStringsAndInt(str1, str2 string, num int) string {
+	return fmt.Sprintf("%s%s%d", str1, str2, num)
+}
 func main() {
-	fmt.Println("Start")
-	defer func() {
-		if r := recover(); r != nil {
-			fmt.Println("Recovered from panic:", r)
-		}
-	}()
 
-	panic("Something went wrong")
-	fmt.Println("End")
+	r := ConcatStringsAndInt("r", "e", 5)
+	fmt.Println(r)
 }
