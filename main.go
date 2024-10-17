@@ -2,13 +2,16 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 )
 
-func ConcatStringsAndInt(str1, str2 string, num int) string {
-	return fmt.Sprintf("%s%s%d", str1, str2, num)
+func IntToBinary(num int) (string, error) {
+
+	if num < 0 {
+		return "", fmt.Errorf("negative numbers are not allowed")
+	}
+	return strconv.FormatInt(int64(num), 2), nil
 }
 func main() {
-
-	r := ConcatStringsAndInt("r", "e", 5)
-	fmt.Println(r)
+	fmt.Println(IntToBinary(20))
 }
