@@ -1,24 +1,26 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 )
 
-type Logger interface {
-	Log(message string)
-}
-
-type Log struct {
-	Level LogLevel
-}
-
-func (l Log) Log(message string) {
-	fmt.Printf("%s: %s", l.Level, message)
-}
-
-type LogLevel string
-
-const (
-	Error LogLevel = "ERROR"
-	Info  LogLevel = "INFO"
+var (
+	ErrDivisionByZero = errors.New("division by zero")
 )
+
+func divide(a, b float64) (float64, error) {
+	if b == 0 {
+		return 0, ErrDivisionByZero
+	}
+	return a / b, nil
+}
+
+func main() {
+	result, err := divide(10, 0)
+	if err != nil {
+		fmt.Println("Ошибка:", err)
+		return
+	}
+	fmt.Println("Результат:", result)
+}
