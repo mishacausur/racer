@@ -5,13 +5,16 @@ import (
 	"strconv"
 )
 
-func IntToBinary(num int) (string, error) {
+func SumTwoIntegers(a, b string) (int, error) {
 
-	if num < 0 {
-		return "", fmt.Errorf("negative numbers are not allowed")
+	i, err := strconv.Atoi(a)
+	u, err1 := strconv.Atoi(b)
+
+	if err != nil || err1 != nil {
+		return 0, fmt.Errorf("invalid input, please provide two integers")
 	}
-	return strconv.FormatInt(int64(num), 2), nil
+	return i + u, nil
 }
 func main() {
-	fmt.Println(IntToBinary(20))
+	fmt.Println(SumTwoIntegers("3.7", "5"))
 }
