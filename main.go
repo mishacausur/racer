@@ -6,19 +6,16 @@ import (
 )
 
 func main() {
-	time.NewTimer(5 * time.Second) // Создаётся таймер  на 5 секунд
-	duration := 5 * time.Second
-	fmt.Println("Duration:", duration)
+	// Устанавливаем интервал времени для таймера (в данном случае, 5 секунд)
+	interval := 5 * time.Second
 
-	// Выполняем действия в течение заданного промежутка времени
-	fmt.Println("Start")
-	time.Sleep(duration)
-	fmt.Println("End")
+	// Создаём новый таймер с указанным интервалом
+	timer := time.NewTimer(interval)
 
-	// Вычисляем разницу между моментами времени
-	t1 := time.Now()
-	time.Sleep(duration)
-	t2 := time.Now()
-	diff := t2.Sub(t1)
-	fmt.Println("Difference:", diff)
+	fmt.Println("Задача будет выполнена через", interval)
+
+	// Ожидаем события от таймера (пока не прошло 5 секунд)
+	<-timer.C
+
+	fmt.Println("Задача выполнена!")
 }
