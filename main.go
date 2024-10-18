@@ -6,8 +6,19 @@ import (
 )
 
 func main() {
-	t1 := time.Date(2022, 1, 1, 0, 0, 0, 0, time.UTC)
+	time.NewTimer(5 * time.Second) // Создаётся таймер  на 5 секунд
+	duration := 5 * time.Second
+	fmt.Println("Duration:", duration)
+
+	// Выполняем действия в течение заданного промежутка времени
+	fmt.Println("Start")
+	time.Sleep(duration)
+	fmt.Println("End")
+
+	// Вычисляем разницу между моментами времени
+	t1 := time.Now()
+	time.Sleep(duration)
 	t2 := time.Now()
 	diff := t2.Sub(t1)
-	fmt.Println("Difference between t1 and t2:", diff)
+	fmt.Println("Difference:", diff)
 }
