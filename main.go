@@ -6,16 +6,18 @@ import (
 )
 
 func main() {
-	// Устанавливаем интервал времени для таймера (в данном случае, 5 секунд)
-	interval := 5 * time.Second
+	// Устанавливаем часовой пояс UTC
+	loc, err := time.LoadLocation("UTC")
+	if err != nil {
+		fmt.Println("Ошибка при загрузке часового пояса:", err)
+		return
+	}
 
-	// Создаём новый таймер с указанным интервалом
-	timer := time.NewTimer(interval)
+	// Получаем текущее время в указанном часовом поясе
+	currentTime := time.Now().In(loc)
 
-	fmt.Println("Задача будет выполнена через", interval)
+	// Форматируем время в строку с заданным форматом
+	formattedTime := currentTime.Format("2006-01-02 15:04:05")
 
-	// Ожидаем события от таймера (пока не прошло 5 секунд)
-	<-timer.C
-
-	fmt.Println("Задача выполнена!")
+	fmt.Println("Текущее время (UTC):", formattedTime)
 }
