@@ -1,19 +1,12 @@
-package main
+package printer
 
-import (
-	"testing"
-)
+import "testing"
 
-func TestMaxInt(t *testing.T) {
-	a, b := 2, 7
+func TestPrintHello(t *testing.T) {
+	got := PrintHello("Igor")
+	expected := "Hello, Igor!"
 
-	res := MaxInt(a, b)
-
-	if res != b {
-		t.Errorf("expected %d, got %d", b, res)
+	if got != expected {
+		t.Fatalf(`PrintHello("Igor") = %q, want %q`, got, expected)
 	}
-}
-
-func TestMain(m *testing.M) {
-	main()
 }
