@@ -2,6 +2,8 @@ package printer
 
 import "testing"
 
+// run all of the tests -> | go test -v ./...
+
 // func TestPrintHello(t *testing.T) {
 // 	got := PrintHello("Igor")
 // 	expected := "Hello, Igor!"
@@ -28,7 +30,7 @@ import "testing"
 //     }
 // }
 
-func TestPrintHello(t *testing.T) {
+func TestPrintHello(t *testing.T) { //go test -v -run=^TestPrintHello$
 	names["Petr"] = "Petr"
 	got := PrintHello("Igor")
 	expected := "Hello, Igor!"
@@ -43,5 +45,14 @@ func TestPrintHello(t *testing.T) {
 		} else {
 			break
 		}
+	}
+}
+
+func TestPrintHelloIvan(t *testing.T) { // go test -v -run=TestPrintHelloIvan
+	got := PrintHello("Ivan")
+	expected := "Hello, Ivan!"
+
+	if got != expected {
+		t.Fatalf(`PrintHello("Ivan") = %q, want %q`, got, expected)
 	}
 }
