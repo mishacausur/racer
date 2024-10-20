@@ -1,19 +1,47 @@
-package main
+package printer
 
-import (
-	"testing"
-)
+import "testing"
 
-func TestMaxInt(t *testing.T) {
-	a, b := 2, 7
+// func TestPrintHello(t *testing.T) {
+// 	got := PrintHello("Igor")
+// 	expected := "Hello, Igor!"
 
-	res := MaxInt(a, b)
+// 	if got != expected {
+// 		t.Fatalf(`PrintHello("Igor") = %q, want %q`, got, expected)
+// 	}
+// }
 
-	if res != b {
-		t.Errorf("expected %d, got %d", b, res)
+// func TestPrintHello(t *testing.T) {
+//     got := PrintHello("Igor")
+//     expected := "Hello, Igor!"
+
+//     if got != expected {
+//         t.Fatalf(`PrintHello("Igor") = %q, want %q`, got, expected)
+//     }
+
+//     for name := range names {
+//         if name != "Igor" {
+//             t.Fatalf(`got %q, want %q`, name, "Igor")
+//         } else {
+//             break
+//         }
+//     }
+// }
+
+func TestPrintHello(t *testing.T) {
+	names["Petr"] = "Petr"
+	got := PrintHello("Igor")
+	expected := "Hello, Igor!"
+
+	if got != expected {
+		t.Fatalf(`PrintHello("Igor") = %q, want %q`, got, expected)
 	}
-}
 
-func TestMain(m *testing.M) {
-	main()
+	for name := range names {
+		if name != "Igor" {
+			t.Fatalf(`got %q, want %q`, name, "Igor")
+		} else {
+			break
+		}
+	}
 }
